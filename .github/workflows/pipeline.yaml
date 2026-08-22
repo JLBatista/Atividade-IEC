@@ -1,36 +1,26 @@
-name: Pipeline de Teste
+name: Pipeline de Testes da Calculadora
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  teste:
+  testes-calculadora:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Baixar Código de Repositório 
+      - name: Fazer checkout do codigo
         uses: actions/checkout@v4
 
-      - name: Configurar Python
+      - name: Configurar o Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Instalar Dependencias do Node e Python
+      - name: Instalar o pytest
         run: |
           python -m pip install --upgrade pip
           pip install pytest
-          # Se você não usa Node (npm), comente ou apague as duas linhas abaixo:
-          npm install || echo "Sem package.json para instalar"
 
-      - name: Executar testes Python
-        run: pytest || echo "Nenhum teste em Python criado ainda"
-
-      - name: Executar testes Node
-        run: npm test || echo "Nenhum teste em Node criado ainda"
-
-  deploy:
-    needs: teste
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Deploy realizado com sucesso!"
+      - name: Executar os testes automaticamente
+        run: pytest
