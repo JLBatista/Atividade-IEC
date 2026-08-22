@@ -11,3 +11,8 @@ jobs:
     steps:
     - name: Baixar Código de Repositório 
       uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-phyton@v5
+      with:
+       phyton-version:'3.12'
