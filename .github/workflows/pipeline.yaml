@@ -1,0 +1,13 @@
+name: Pipeline de Teste
+
+on:
+  push:
+    branches: [ "main"]
+
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+
+    steps:
+      -name: Baixar Código de Repositório
+      uses: actions/checkout@v4
