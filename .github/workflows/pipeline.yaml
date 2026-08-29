@@ -26,8 +26,54 @@ jobs:
         run: |
           pytest tests/test_soma.py 
 
-    test_sub:
-        needs: testes-calculadora
-    test:_nuh:
-    test_div:
-    deploy:
+  test_sub:
+    needs: testes-calculadora
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fazer checkout do codigo
+        uses: actions/checkout@v4
+      - name: Configurar o Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias
+        run: pip install pytest
+      - name: Executar os testes de subtracao
+        run: pytest tests/test_sub.py
+
+  test_mul:
+    needs: testes-calculadora
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fazer checkout do codigo
+        uses: actions/checkout@v4
+      - name: Configurar o Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias
+        run: pip install pytest
+      - name: Executar os testes de multiplicacao
+        run: pytest tests/test_mul.py
+
+  test_div:
+    needs: testes-calculadora
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fazer checkout do codigo
+        uses: actions/checkout@v4
+      - name: Configurar o Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias
+        run: pip install pytest
+      - name: Executar os testes de divisao
+        run: pytest tests/test_div.py
+
+  deploy:
+    needs: [testes-calculadora, test_sub, test_mul, test_div]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Executar Deploy
+        run: echo "Executando deploy..."
