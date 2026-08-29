@@ -22,5 +22,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
 
-      - name: Executar os testes automaticamente
-        run: pytest
+      - name: Executar os testes de soma
+        run: |
+          pytest tests/test_soma.py 
+
+    test_sub:
+        needs: testes-calculadora
+    test:_nuh:
+    test_div:
+    deploy:
